@@ -16,7 +16,7 @@ def FileOpener (midiList, filename):
         for msg in track:
             if not msg.is_meta:
                 #print(msg)
-                temp.append(msg)
+                temp.append(msg.bytes())
 
     midiList.append(temp)
 
