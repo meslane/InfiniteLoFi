@@ -18,6 +18,11 @@ $ pip install python-rtmidi
 
 ```
 
+## Run
+```bash
+$ python main.py
+```
+
 ### Links:
 * MIDI File Format: https://midimusic.github.io/tech/midispec.html#BM1_3
 * Mido Python Library: https://mido.readthedocs.io/en/latest/
