@@ -13,6 +13,7 @@ def markov(data, n, outputLength):
    
     for i in range(len(data)):
         gram = tuple(getNGram(data, i, n))
+        print(gram)
         
         if gram not in dataDict:
             dataDict[gram] = []
@@ -42,4 +43,4 @@ def testMarkov(filename):
         
     return out.join(markov(text,1,100))
     
-print(testMarkov('ssb.txt'))
+#print(testMarkov('ssb.txt'))

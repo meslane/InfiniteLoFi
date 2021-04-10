@@ -1,8 +1,8 @@
 import mido
 from pathlib import Path
 
-from InfiniteLoFi.FileOpener import FileOpener
-
+import FileOpener
+import markov
 
 def main():
     print("hello Casey")
@@ -15,8 +15,12 @@ if __name__ == "__main__":
 
     files = Path(directory).glob('*')
     for file in files:
-        FileOpener(midiList, file)
+        FileOpener.FileOpener(midiList, file)
         #print(file)
+        
+    m = markov.markov(midiList[0], 2, 100)
+
+    print(m)
 
     # i = 1
     # for section in midiList:
