@@ -29,6 +29,17 @@ def markov(data, n, outputLength):
         except KeyError:
             output.append(random.choice(list(dataDict.keys())))
     
-    return output
+    out = [item for t in output for item in t]
+    
+    return out
+       
+
+def testMarkov(filename):
+    out = " "
+
+    with open(filename) as f:
+        text = f.read().split()
         
-print(markov(['she', 'sells', 'sea', 'shells', 'on', 'the', 'sea', 'shore'],2,10))
+    return out.join(markov(text,1,100))
+    
+print(testMarkov('ssb.txt'))
