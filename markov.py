@@ -17,8 +17,18 @@ def markov(data, n, outputLength):
         if gram not in dataDict:
             dataDict[gram] = []
             
-        dataDict[gram].append(tuple(getNGram(data, i + 1, n)))
+        dataDict[gram].append(tuple(getNGram(data, i + n, n)))
         
-    return dataDict
+    output = []
+    
+    output.append(random.choice(list(dataDict.keys())))
+
+    for i in range(outputLength):
+        try:
+            output.append(dataDict[output[-1]][random.randint(0,len(dataDict[output[-1]]) - 1)])
+        except KeyError:
+            output.append(random.choice(list(dataDict.keys())))
+    
+    return output
         
 print(markov(['she', 'sells', 'sea', 'shells', 'on', 'the', 'sea', 'shore'],2,10))
