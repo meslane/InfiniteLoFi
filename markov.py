@@ -40,6 +40,6 @@ def testMarkov(filename):
     with open(filename) as f:
         text = f.read().split()
 
-    return out.join(markov(text,1,10000))
+    return out.join(markov(text,1,500000))
     
 #print(testMarkov('ssb.txt'))

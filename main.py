@@ -23,14 +23,16 @@ if __name__ == "__main__":
         #print(file)
     '''
     
-    clocks = FileOpener.FileOpener(midiList, "duel.mid")
+    clocks = FileOpener.FileOpener(midiList, "fugue1.mid")
+    
+    print(clocks)
 
     # print(midiList)
 
-    m = markov.markov(midiList[0], 1, 1000)
+    m = markov.markov(midiList[0], 3, 100000)
 
     newSong = TupleToMessage(m)
 
     # print(newSong)
 
-    output_song(newSong, clocks)
+    output_song(newSong, 2500000, clocks)
