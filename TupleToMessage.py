@@ -15,7 +15,7 @@ def TupleToMessage ( m ):
             
         try:
             temp2.time = temp[3]
-        except IndexError:
+        except:
             temp2.time = temp[-1]
             
         final.append(temp2)
