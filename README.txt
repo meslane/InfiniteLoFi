@@ -8,3 +8,6 @@ Basic program flow:
 -load output into MIDI file (Yug)
 -play output
 
+Links:
+MIDI File Format: https://midimusic.github.io/tech/midispec.html#BM1_3
+Mido Python Library: https://mido.readthedocs.io/en/latest/
