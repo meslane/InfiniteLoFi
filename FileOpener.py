@@ -1,4 +1,4 @@
-# Created by Aditya Kumar and Casey Kwinn
+# Created Aditya Kumar and Casey Kwinn
 # Date: April 10, 2021
 
 import mido
