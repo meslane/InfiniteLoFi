@@ -34,7 +34,6 @@ def markov(data, n, outputLength):
 
     return out
 
-
 def testMarkov(filename):
     out = " "
 
