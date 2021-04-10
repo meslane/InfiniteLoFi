@@ -16,18 +16,20 @@ def output_song(newSong, clocksPerClick):
                         looptime = time.time()
                         ms += 0.001
                         #print(ms)
-                        
+
                 delta = math.floor((ms * 500))
                 #print(delta)
-                        
+
                 if delta >= newSong[i].time:
                     print(newSong[i])
                     outport.send(newSong[i])
                     i += 1
                     delta = 0
                     ms = 0
-                    
+
         outport.close()
 
-    except:
-        print("you are on a mac u loser")
+    except Exception:
+        print("Unable to find output port.")
+    except KeyboardInterrupt:
+        print("Goodbye!!")
