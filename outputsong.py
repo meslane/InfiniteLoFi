@@ -6,7 +6,7 @@ def output_song(newSong):
     try:
         with mido.open_output() as outport:
             for note in newSong:
-                #print(note)
+                print(note)
                 outport.send(note)
         outport.close()
 
