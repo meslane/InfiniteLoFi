@@ -11,14 +11,14 @@
  * Play output
 
 
-## Installation
+## Installation:
 ```bash
 $ pip install mido
 $ pip install python-rtmidi
 
 ```
 
-## Run
+## Run:
 ```bash
 $ python main.py
 ```
