@@ -11,9 +11,11 @@ def FileOpener (midiList, filename):
     p = mido.Parser()
 
     for i, track in enumerate(mid.tracks):
-        print('Track {}: {}'.format(i, track))
+        #print('Track {}: {}'.format(i, track))
         for msg in track:
-            print(msg)
+            #print(msg)
+            midiList.append(msg)
+            pass
 
     return;
         #midiList;

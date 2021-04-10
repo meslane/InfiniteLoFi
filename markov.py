@@ -42,4 +42,4 @@ def testMarkov(filename):
         
     return out.join(markov(text,1,100))
     
-print(testMarkov('ssb.txt'))
+#print(testMarkov('ssb.txt'))
