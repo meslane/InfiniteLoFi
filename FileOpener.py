@@ -10,6 +10,7 @@ def FileOpener (midiList, filename):
     mid = MidiFile(filename)
     p = mido.Parser()
     temp = []
+    cpc = 0
 
     for i, track in enumerate(mid.tracks):
         #print('Track {}: {}'.format(i, track))
@@ -19,7 +20,10 @@ def FileOpener (midiList, filename):
                 temp2 = msg.bytes()
                 temp2.append(msg.time)
                 temp.append(tuple(temp2))
+            else:
+                if msg.type == "time_signature":
+                    cpc = msg.clocks_per_click
 
     midiList.append(temp)
 
-    return;
+    return cpc

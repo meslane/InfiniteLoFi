@@ -14,18 +14,23 @@ if __name__ == "__main__":
 
     midiList = []
     directory = 'MIDI'
+    clocks = 0
 
+    '''
     files = Path(directory).glob('*')
     for file in files:
-        FileOpener.FileOpener(midiList, file)
+        clocks = FileOpener.FileOpener(midiList, file)
         #print(file)
+    '''
+    
+    clocks = FileOpener.FileOpener(midiList, "duel.mid")
 
     # print(midiList)
 
-    m = markov.markov(midiList[0], 2, 100)
+    m = markov.markov(midiList[0], 1, 1000)
 
     newSong = TupleToMessage(m)
 
     # print(newSong)
 
-    output_song(newSong)
+    output_song(newSong, clocks)
