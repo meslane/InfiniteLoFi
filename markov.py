@@ -13,7 +13,7 @@ def markov(data, n, outputLength):
 
     for i in range(len(data)):
         gram = tuple(getNGram(data, i, n))
-        print(gram)
+        #print(gram)
 
         if gram not in dataDict:
             dataDict[gram] = []

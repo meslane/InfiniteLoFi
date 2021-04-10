@@ -3,8 +3,8 @@ from pathlib import Path
 
 import FileOpener
 import markov
-from InfiniteLoFi.TupleToMessage import TupleToMessage
-
+from TupleToMessage import TupleToMessage
+from outputsong import output_song
 
 def main():
     print("hello Casey")
@@ -22,12 +22,6 @@ if __name__ == "__main__":
         
     m = markov.markov(midiList[0], 2, 100)
 
-    print(m)
-
     newSong = TupleToMessage(m)
 
-    # i = 1
-    # for section in newSong:
-    #     print(i)
-    #     i += 1
-    #     print(section)
+    output_song(newSong)
