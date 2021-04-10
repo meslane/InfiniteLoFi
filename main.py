@@ -21,6 +21,6 @@ if __name__ == "__main__":
     # i = 1
     # for section in midiList:
     #   print(i)
-    #    i += 1
-    #    for note in section:
-    #        print(note)
+    #   i += 1
+    #   for note in section:
+    #       print(note)
