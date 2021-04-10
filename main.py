@@ -24,13 +24,13 @@ if __name__ == "__main__":
     
     for track in midiList:
         finalList += track
-
-    m = markov.markov(finalList, 3, 10000)
-
-    newSong = TupleToMessage(m)
-
-    # print(newSong)
-    
+        
+    print(len(finalList))
+        
     print(timing[0], timing[1])
 
-    output_song(newSong, timing[0], timing[1])
+    while True:
+        m = markov.markov(finalList, 2, 1000)
+        newSong = TupleToMessage(m)
+        output_song(newSong, timing[0], timing[1])
+        print("song over")
