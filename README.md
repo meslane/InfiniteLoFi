@@ -13,7 +13,7 @@
 
 ## Installation
 ```bash
-$ pip install install mido
+$ pip install mido
 $ pip install python-rtmidi
 
 ```
