@@ -14,19 +14,11 @@ if __name__ == "__main__":
 
     midiList = []
     directory = 'MIDI'
-    clocks = 0
 
-    
     files = Path(directory).glob('*')
     for file in files:
-        clocks = FileOpener.FileOpener(midiList, file)
+        timing = FileOpener.FileOpener(midiList, file)
         #print(file)
-    
-    #clocks = FileOpener.FileOpener(midiList, "Fugue1.mid")
-    
-    print(clocks)
-
-    # print(midiList)
     
     finalList = []
     
@@ -38,5 +30,7 @@ if __name__ == "__main__":
     newSong = TupleToMessage(m)
 
     # print(newSong)
+    
+    print(timing[0], timing[1])
 
-    output_song(newSong, 800000, clocks)
+    output_song(newSong, timing[0], timing[1])

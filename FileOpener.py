@@ -12,7 +12,8 @@ def FileOpener (midiList, filename):
     temp = []
     
     ticksPerBeat = mid.ticks_per_beat
-    clocksPerClick = 0
+    tempolist = []
+    tempo = 500000
     
     for i, track in enumerate(mid.tracks):
         #print('Track {}: {}'.format(i, track))
@@ -23,8 +24,11 @@ def FileOpener (midiList, filename):
                 temp2.append(msg.time)
                 temp.append(tuple(temp2))
             elif (msg.type == "set_tempo"):
-               print(msg)
+                tempolist.append(msg.tempo)
 
     midiList.append(temp)
+    
+    if tempolist:
+        tempo = sum(tempolist)/len(tempolist)
 
-    return ticksPerBeat
+    return (tempo, ticksPerBeat)
