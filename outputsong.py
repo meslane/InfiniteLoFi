@@ -17,7 +17,7 @@ def output_song(newSong, mpb, tpb): #microseconds per beat, ticks per beat
                         s += 0.001
                         #print(ms)
                         
-                ticks = math.floor((s * (mpb/1000000)) * tpb)
+                ticks = math.floor(s * (1000000/(mpb/tpb)))
                 #print(ticks)
                         
                 if ticks >= newSong[i].time:

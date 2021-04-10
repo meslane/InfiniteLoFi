@@ -23,7 +23,7 @@ def FileOpener (midiList, filename):
                 temp2.append(msg.time)
                 temp.append(tuple(temp2))
             elif (msg.type == "set_tempo"):
-               pass 
+               print(msg)
 
     midiList.append(temp)
 
