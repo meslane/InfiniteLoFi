@@ -2,18 +2,22 @@
 # Date: April 10, 2021
 
 import mido
-import struct
+#import struct
 from mido import MidiFile
 
 def FileOpener (midiList, filename):
 
     mid = MidiFile(filename)
     p = mido.Parser()
+    temp = []
 
     for i, track in enumerate(mid.tracks):
-        print('Track {}: {}'.format(i, track))
+        #print('Track {}: {}'.format(i, track))
         for msg in track:
-            print(msg)
+            if not msg.is_meta:
+                #print(msg)
+                temp.append(msg)
+
+    midiList.append(temp)
 
     return;
-        #midiList;

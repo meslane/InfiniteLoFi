@@ -17,3 +17,10 @@ if __name__ == "__main__":
     for file in files:
         FileOpener(midiList, file)
         #print(file)
+
+    # i = 1
+    # for section in midiList:
+    #   print(i)
+    #    i += 1
+    #    for note in section:
+    #        print(note)
