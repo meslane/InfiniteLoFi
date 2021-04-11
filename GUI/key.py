@@ -10,7 +10,7 @@ class piano():
         except IndexError:
             print("key at index {} does not exist".format(number))
             
-    def release(self.number):
+    def release(self, number):
         try:
             self.keylist[number].release()
         except IndexError:
@@ -37,3 +37,6 @@ class key(pygame.rect):
     def move(self, newleft, newtop):
         self.left = newleft
         self.top = newtop
+        
+    def draw(self, surface):
+        pygame.draw.rect(surface, self.color, self)
