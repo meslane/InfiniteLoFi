@@ -2,6 +2,8 @@ import mido
 from mido import MidiFile
 
 def TupleToMessage ( m ):
+    #converts the tuples holding the data about the notes back into the MIDI message form
+
     final = []
 
     for tuple in m:
