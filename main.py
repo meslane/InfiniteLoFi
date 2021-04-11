@@ -13,18 +13,17 @@ def main():
 if __name__ == "__main__":
     main()
     piano = piano()
-    piano.build()
 
-    # midiList = []
-    # directory = 'MIDI'
-    #
-    # files = Path(directory).glob('*')
-    # for file in files:
-    #     timing = FileOpener.FileOpener(midiList, file)
-    #     #print(file)
-    #
-    # finalList = []
-    #
+    midiList = []
+    directory = 'MIDI'
+
+    files = Path(directory).glob('*')
+    for file in files:
+        timing = FileOpener.FileOpener(midiList, file)
+        #print(file)
+
+    finalList = []
+
     # for track in midiList:
     #     finalList += track
     #
