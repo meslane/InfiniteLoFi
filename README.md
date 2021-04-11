@@ -15,7 +15,7 @@
 ```bash
 $ pip install mido
 $ pip install python-rtmidi
-
+$ pip install pygame
 ```
 
 ## Run:
