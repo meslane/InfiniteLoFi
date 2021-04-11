@@ -13,6 +13,22 @@ num_white_keys = 52
 white_key_height = 100
 white_key_width = (screen_width-100)/52 - 2
 
+def draw_buttons():
+    pygame.draw.rect(screen, (0, 0, 0), (198, 423, 104, 55), border_radius=3)
+    pygame.draw.rect(screen, (211, 211, 211), (200, 425, 100, 50), border_radius=3)
+    play = pygame.font.SysFont('Raleway Bold', 40)
+    textsurface = play.render('PLAY', True, (128,128,0))
+    screen.blit(textsurface,(215,438))
+    pygame.draw.rect(screen, (0, 0, 0), (498, 423, 104, 55), border_radius=3)
+    pygame.draw.rect(screen, (211, 211, 211), (500, 425, 100, 50), border_radius=3)
+    quit = pygame.font.SysFont('Raleway Bold', 40)
+    textsurface = play.render('QUIT', True, (128,0,0))
+    screen.blit(textsurface,(515,438))
+
+    welcome_msg = pygame.font.SysFont('Raleway Bold', 65)
+    textsurface = play.render('Infinite LoFi Music Generator', True, (0, 0, 0))
+    screen.blit(textsurface, (202, 525))
+    
 isRunning = True
 while isRunning:
     for event in pygame.event.get():
@@ -29,6 +45,7 @@ while isRunning:
 
 
     screen.fill((128, 128, 128))
+    draw_buttons()
     # build white keys
     for i in range(num_white_keys):
         curr_white_key_X = 50
