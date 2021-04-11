@@ -21,22 +21,22 @@ def draw_buttons(curr_width, curr_height):
     pygame.draw.rect(screen, (211, 211, 211), (curr_width / 4, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
     play = pygame.font.SysFont('Raleway Bold', 40)
     textsurface = play.render('PLAY', True, (128,128,0))
-    screen.blit(textsurface,(215,438))
+    screen.blit(textsurface,((screen_width / 4 ) +  15, screen_height - 200 + 12))
     pygame.draw.rect(screen, (0, 0, 0), (((5 * curr_width) / 8) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
     pygame.draw.rect(screen, (211, 211, 211), ((5 * curr_width) / 8, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
     quit = pygame.font.SysFont('Raleway Bold', 40)
     textsurface = play.render('QUIT', True, (128,0,0))
-    screen.blit(textsurface,(515,438))
+    screen.blit(textsurface,((screen_height - 100) +  15, screen_height - 200 + 12))
 
     welcome_msg = pygame.font.SysFont('Raleway Bold', 65)
     textsurface = play.render('Infinite LoFi Music Generator', True, (0, 0, 0))
     screen.blit(textsurface, (202, 525))
     
 def play_or_quit(position):
-    if (position[0] >= 200 and position[0] <= 300) and (position[1] >= 425 and position[1] <= 475):
+    if (position[0] >= 200 and position[0] <= 300) and (position[1] >= 400 and position[1] <= 445):
         # call the play music button:
         print("have to implement")
-    elif (position[0] >= 500 and position[0] <= 600) and (position[1] >= 425 and position[1] <= 475):
+    elif (position[0] >= 500 and position[0] <= 600) and (position[1] >= 400 and position[1] <= 445):
         exit()
  
 isRunning = True
