@@ -13,14 +13,17 @@ num_white_keys = 52
 white_key_height = 100
 white_key_width = (screen_width-100)/52 - 2
 
-def draw_buttons():
-    pygame.draw.rect(screen, (0, 0, 0), (198, 423, 104, 55), border_radius=3)
-    pygame.draw.rect(screen, (211, 211, 211), (200, 425, 100, 50), border_radius=3)
+def draw_buttons(curr_width, curr_height):
+    button_width = curr_width / 8
+    button_height = curr_height / 12
+
+    pygame.draw.rect(screen, (0, 0, 0), ((curr_width / 4) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
+    pygame.draw.rect(screen, (211, 211, 211), (curr_width / 4, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
     play = pygame.font.SysFont('Raleway Bold', 40)
     textsurface = play.render('PLAY', True, (128,128,0))
     screen.blit(textsurface,(215,438))
-    pygame.draw.rect(screen, (0, 0, 0), (498, 423, 104, 55), border_radius=3)
-    pygame.draw.rect(screen, (211, 211, 211), (500, 425, 100, 50), border_radius=3)
+    pygame.draw.rect(screen, (0, 0, 0), (((5 * curr_width) / 8) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
+    pygame.draw.rect(screen, (211, 211, 211), ((5 * curr_width) / 8, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
     quit = pygame.font.SysFont('Raleway Bold', 40)
     textsurface = play.render('QUIT', True, (128,0,0))
     screen.blit(textsurface,(515,438))
@@ -45,7 +48,9 @@ while isRunning:
 
 
     screen.fill((128, 128, 128))
-    draw_buttons()
+    curr_width = screen.get_width()
+    curr_height = screen.get_height()
+    draw_buttons(curr_width, curr_height)
     # build white keys
     for i in range(num_white_keys):
         curr_white_key_X = 50
