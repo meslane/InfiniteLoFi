@@ -25,7 +25,7 @@ class piano():
         if color == 1:
             black_width = screen.get_width()/78-2
             black_X = self.keylist[number - 1].left + (white_width / 2) + 1
-            self.keylist.append(key(black_X, 0, black_width, screen.get_height()/8 - 2, 0, (255, 155, 40)))
+            self.keylist.append(key(black_X, 0, black_width, screen.get_height()/8 - 2, 1, (255, 155, 40)))
 
     def draw(self, screen):
         white_width = (screen.get_width() / 52) - 2
