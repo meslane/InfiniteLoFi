@@ -59,6 +59,7 @@ class key(pygame.Rect):
         
         self.color = self.passiveColor
         self.pressColor = pressColor
+        self.type = type
         
     def press(self):
         self.color = self.pressColor

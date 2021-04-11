@@ -22,12 +22,12 @@ def draw_buttons(curr_width, curr_height):
     pygame.draw.rect(screen, (211, 211, 211), (curr_width / 4, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
     play = pygame.font.SysFont('Raleway Bold', 40)
     textsurface = play.render('PLAY', True, (128,128,0))
-    screen.blit(textsurface,(215,438))
+    screen.blit(textsurface,((curr_width / 4 * 215) / 200,(((curr_height * 4) / 6) * 415) / 400))
     pygame.draw.rect(screen, (0, 0, 0), (((5 * curr_width) / 8) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
     pygame.draw.rect(screen, (211, 211, 211), ((5 * curr_width) / 8, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
     quit = pygame.font.SysFont('Raleway Bold', 40)
     textsurface = play.render('QUIT', True, (128,0,0))
-    screen.blit(textsurface,(515,438))
+    screen.blit(textsurface,(515, (((curr_height * 4) / 6) * 415) / 400))
 
     welcome_msg = pygame.font.SysFont('Raleway Bold', 65)
     textsurface = play.render('Infinite LoFi Music Generator', True, (0, 0, 0))
@@ -66,7 +66,6 @@ while isRunning:
     curr_height = screen.get_height()
     draw_buttons(curr_width, curr_height)
     pygame.draw.rect(screen, (0, 0, 0), (0, 0, curr_width, curr_height / 4))
-
-    pygame.draw.rect(screen, (0, 0, 0), (350, 200, 100, 50))
+    piano.draw(screen)
 
     pygame.display.update()
