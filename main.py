@@ -31,7 +31,7 @@ def draw_buttons(curr_width, curr_height):
     screen.blit(textsurface,((curr_width / 4 * 215) / 200,(((curr_height * 4) / 6) * 415) / 400))
     pygame.draw.rect(screen, (0, 0, 0), (((5 * curr_width) / 8) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
     pygame.draw.rect(screen, (211, 211, 211), ((5 * curr_width) / 8, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
-    textsurface = play.render('QUIT', True, (128,0,0))
+    textsurface = play.render('STOP', True, (128,0,0))
     screen.blit(textsurface,((curr_width / 4 * 515) / 200, (((curr_height * 4) / 6) * 415) / 400))
     welcome_msg = pygame.font.SysFont('Raleway Bold', int(curr_height / 8 ))
     textsurface = play.render('Infinite LoFi Music Generator', True, (0, 0, 0))
