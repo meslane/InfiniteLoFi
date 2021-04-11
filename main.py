@@ -34,8 +34,10 @@ def draw_buttons(curr_width, curr_height):
     textsurface = play.render('STOP', True, (128,0,0))
     screen.blit(textsurface,((curr_width / 4 * 515) / 200, (((curr_height * 4) / 6) * 415) / 400))
     welcome_msg = pygame.font.SysFont('Raleway Bold', int(curr_height / 8 ))
-    textsurface = play.render('Infinite LoFi Music Generator', True, (0, 0, 0))
-    screen.blit(textsurface, ((curr_width / 4) + (screen_width / 100), (((curr_height * 4) / 6) * 505) / 400))
+    
+    textsurface = play.render('Infinite Music Generator', True, (0, 0, 0))
+    srfRect = textsurface.get_rect(center = (curr_width / 2, curr_height / 2.5))
+    screen.blit(textsurface, srfRect)
 
 def play_or_quit(position):
     if (position[0] >= 200 and position[0] <= 300) and (position[1] >= 400 and position[1] <= 445):
