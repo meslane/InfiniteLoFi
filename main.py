@@ -13,29 +13,66 @@ import key
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
-pygame.display.set_caption("Infinite LoFi Generator")
+pygame.display.set_caption("Infinite Music Generator")
 
 #initialize white key sizes
 num_white_keys = 52
 white_key_height = 100
 white_key_width = (screen_width-100)/52 - 2
 
+class clickBox:
+    def __init__(self, center, size, color, clickColor, font, text, textColor):
+        self.center = center
+        self.size = size
+        
+        self.color = color
+        self.textColor = textColor
+        self.clickColor = clickColor
+        
+        self.font = font
+        self.text = text
+        
+        self.box = pygame.Rect(self.center, self.size)
+        self.box.center = self.center
+        
+        self.boundingBox = pygame.Rect(self.center, (self.size[0] + 5, self.size[1] + 5))
+        self.boundingBox.center = self.center
+        
+    def draw(self, screen):
+        boxtext = self.font.render(self.text, True, self.textColor)
+        trect = boxtext.get_rect(center = self.center)
+        
+        pygame.draw.rect(screen, (10,10,10), self.boundingBox, border_radius=3)
+        pygame.draw.rect(screen, self.color, self.box, border_radius=3)
+        screen.blit(boxtext, trect)
+
 def draw_buttons(curr_width, curr_height):
     button_width = curr_width / 8
     button_height = curr_height / 12
+    
+    playfont = pygame.font.SysFont('Raleway Bold', int(curr_height / 15))
+    
+    playButton = clickBox((curr_width / 4, (curr_height * 4) / 6), (100 * (curr_width/800), 50 * (curr_height/600)), (211,211,211), (128,128,128), playfont, "Play", (128,128,0) )
+    playButton.draw(screen)
+    
+    stopButton = clickBox((curr_width * 3 / 4, (curr_height * 4) / 6), (100 * (curr_width/800), 50 * (curr_height/600)), (211,211,211), (128,128,128), playfont, "Stop", (128,0,0) )
+    stopButton.draw(screen)
 
+    '''
     pygame.draw.rect(screen, (0, 0, 0), ((curr_width / 4) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
     pygame.draw.rect(screen, (211, 211, 211), (curr_width / 4, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
-    play = pygame.font.SysFont('Raleway Bold', int(curr_height / 15))
     textsurface = play.render('PLAY', True, (128,128,0))
     screen.blit(textsurface,((curr_width / 4 * 215) / 200,(((curr_height * 4) / 6) * 415) / 400))
+    '''
+    '''
     pygame.draw.rect(screen, (0, 0, 0), (((5 * curr_width) / 8) - 2, ((curr_height * 4) / 6) - 2, button_width + 4, button_height + 5), border_radius=3)
     pygame.draw.rect(screen, (211, 211, 211), ((5 * curr_width) / 8, (curr_height * 4) / 6, button_width, button_height), border_radius=3)
-    textsurface = play.render('STOP', True, (128,0,0))
+    textsurface = playfont.render('STOP', True, (128,0,0))
     screen.blit(textsurface,((curr_width / 4 * 515) / 200, (((curr_height * 4) / 6) * 415) / 400))
     welcome_msg = pygame.font.SysFont('Raleway Bold', int(curr_height / 8 ))
+    '''
     
-    textsurface = play.render('Infinite Music Generator', True, (0, 0, 0))
+    textsurface = playfont.render('Infinite Music Generator', True, (0, 0, 0))
     srfRect = textsurface.get_rect(center = (curr_width / 2, curr_height / 2.5))
     screen.blit(textsurface, srfRect)
 
