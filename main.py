@@ -26,11 +26,24 @@ class clickBox:
         self.size = size
         
         self.color = color
+        self.boxColor = color
         self.textColor = textColor
         self.clickColor = clickColor
         
         self.font = font
         self.text = text
+        
+        self.box = pygame.Rect(self.center, self.size)
+        self.box.center = self.center
+        
+        self.boundingBox = pygame.Rect(self.center, (self.size[0] + 5, self.size[1] + 5))
+        self.boundingBox.center = self.center
+        
+        self.focused = False
+        
+    def moveAndResize(self, center, size):
+        self.center = center
+        self.size = size
         
         self.box = pygame.Rect(self.center, self.size)
         self.box.center = self.center
@@ -45,8 +58,24 @@ class clickBox:
         pygame.draw.rect(screen, (10,10,10), self.boundingBox, border_radius=3)
         pygame.draw.rect(screen, self.color, self.box, border_radius=3)
         screen.blit(boxtext, trect)
+        
+    def testClick(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.box.collidepoint(event.pos):
+                self.focused = True
+                self.color = self.clickColor
+                
+                return False
+                
+        if event.type == pygame.MOUSEBUTTONUP and self.focused:
+            self.focused = False
+            self.color = self.boxColor
+                
+            return True
+        else:
+            return False
 
-def draw_buttons(curr_width, curr_height):
+def draw_buttons(curr_width, curr_height, event):
     button_width = curr_width / 8
     button_height = curr_height / 12
     
@@ -117,8 +146,35 @@ def main():
     piano = key.piano()
     piano.build(screen)
     
+    
+    
+    curr_width = screen.get_width()
+    curr_height = screen.get_height()
+    playfont = pygame.font.SysFont('Raleway Bold', int(curr_height / 15))
+    playButton = clickBox((curr_width / 4, (curr_height * 4) / 6), (100 * (curr_width/800), 50 * (curr_height/600)), (211,211,211), (128,128,128), playfont, "Play", (128,128,0) )
+    stopButton = clickBox((curr_width * 3 / 4, (curr_height * 4) / 6), (100 * (curr_width/800), 50 * (curr_height/600)), (211,211,211), (128,128,128), playfont, "Stop", (128,0,0))
+    
     isRunning = True
+    playSong = False
     while isRunning:
+        screen.fill((128, 128, 128))
+        curr_width = screen.get_width()
+        curr_height = screen.get_height()
+        
+        pygame.draw.rect(screen, (0, 0, 0), (0, 0, curr_width, curr_height / 4))
+        piano.draw(screen)
+        
+        #draw buttons:
+        playButton.moveAndResize((curr_width / 4, (curr_height * 4) / 6), (100 * (curr_width/800), 50 * (curr_height/600)))
+        stopButton.moveAndResize((curr_width * 3 / 4, (curr_height * 4) / 6), (100 * (curr_width/800), 50 * (curr_height/600)))
+        
+        playButton.draw(screen)
+        stopButton.draw(screen)
+        
+        textsurface = playfont.render('Infinite Music Generator', True, (0, 0, 0))
+        srfRect = textsurface.get_rect(center = (curr_width / 2, curr_height / 2.5))
+        screen.blit(textsurface, srfRect)
+    
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 isRunning = False
@@ -126,51 +182,47 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     isRunning = False
-
-            if event.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
-                play_or_quit(pos)
-
-        screen.fill((128, 128, 128))
-        curr_width = screen.get_width()
-        curr_height = screen.get_height()
-        draw_buttons(curr_width, curr_height)
-        pygame.draw.rect(screen, (0, 0, 0), (0, 0, curr_width, curr_height / 4))
-        piano.draw(screen)
+                
+            if playButton.testClick(event):
+                playSong = True
+            
+            if stopButton.testClick(event):
+                isRunning = False
 
         pygame.display.update()
     
-        if i >= len(newSong):
-            print("song over")
-            for i in range(0,88):
-                piano.release(i)
+        if playSong:
+            if i >= len(newSong):
+                #print("song over")
+                for i in range(0,88):
+                    piano.release(i)
+                
+                m = markov.markov(finalList, 3, 100)
+                newSong = TupleToMessage(m)
+                i = 0 
+                s = 0
+                delta = 0
+                looptime = time.time()
             
-            m = markov.markov(finalList, 2, 100)
-            newSong = TupleToMessage(m)
-            i = 0 
-            s = 0
-            delta = 0
-            looptime = time.time()
-        
-        if (time.time() - looptime > 0.001):
-            looptime = time.time()
-            s += 0.001
+            if (time.time() - looptime > 0.001):
+                looptime = time.time()
+                s += 0.001
 
-        delta = math.floor(s * (1000000/(timing[0]/timing[1])))
+            delta = math.floor(s * (1000000/(timing[0]/timing[1])))
 
-        if delta >= newSong[i].time:
-            print(newSong[i])
-            if (newSong[i].type == 'note_on'):
-                piano.press(newSong[i].note - 21)
-            elif (newSong[i].type == 'note_off'):
-                piano.release(newSong[i].note - 21)
+            if delta >= newSong[i].time:
+                #print(newSong[i])
+                if (newSong[i].type == 'note_on'):
+                    piano.press(newSong[i].note - 21)
+                elif (newSong[i].type == 'note_off'):
+                    piano.release(newSong[i].note - 21)
+                
+                outport.send(newSong[i])
+                i += 1
+                delta = 0
+                s = 0
             
-            outport.send(newSong[i])
-            i += 1
-            delta = 0
-            s = 0
-        
-        #output_song(newSong, timing[0], timing[1])
+            #output_song(newSong, timing[0], timing[1])
        
 if __name__ == "__main__":
     main()
