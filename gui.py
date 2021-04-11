@@ -39,7 +39,7 @@ def play_or_quit(position):
         exit()
 
 
-
+'''
 piano = piano()
 piano.build(screen)
 
@@ -67,3 +67,4 @@ while isRunning:
     piano.draw(screen)
 
     pygame.display.update()
+'''
