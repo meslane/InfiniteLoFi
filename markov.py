@@ -33,13 +33,3 @@ def markov(data, n, outputLength):
     out = [item for t in output for item in t]
 
     return out
-
-def testMarkov(filename):
-    out = " "
-
-    with open(filename) as f:
-        text = f.read().split()
-
-    return out.join(markov(text,1,500000))
-    
-#print(testMarkov('ssb.txt'))

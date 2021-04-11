@@ -30,7 +30,7 @@ if __name__ == "__main__":
     print(timing[0], timing[1])
 
     while True:
-        m = markov.markov(finalList, 2, 1000)
+        m = markov.markov(finalList, 2, 500)
         newSong = TupleToMessage(m)
         output_song(newSong, timing[0], timing[1])
         print("song over")
