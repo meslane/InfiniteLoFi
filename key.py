@@ -9,7 +9,7 @@ class piano():
         self.add(0, 1, screen)
         self.add(1, 2, screen)
         self.add(0, 3, screen)
-        for key in range(1, num_keys-5):
+        for key in range(1, num_keys-3):
             if(key % 12 == 2 or key % 12 == 4 or key % 12 == 7
             or key % 12 == 9 or key % 12 == 11):
                 self.add(1, key, screen)
@@ -18,7 +18,6 @@ class piano():
         self.add(0, 88, screen)
 
     def add(self, color, number, screen):
-
         #white key
         if color == 0:
             self.keylist.append(key((number*screen.get_width()/52), 0, (screen.get_width()/52)-2, screen.get_height()/4 - 2, 0, (255, 155, 40)))
@@ -31,7 +30,7 @@ class piano():
     def draw(self, screen):
         for i in range(len(self.keylist)):
             if self.keylist[i].type == 0:
-                self.keylist[i].move(i*screen.get_width()/52, 0)
+                self.keylist[i].move_and_rescale(i*screen.get_width()/52, 0,(screen.get_width()/52)-2, screen.get_height()/4 - 2)
 
             self.keylist[i].draw(screen)
 
@@ -67,9 +66,11 @@ class key(pygame.Rect):
     def release(self):
         self.color = self.passiveColor
         
-    def move(self, newleft, newtop):
+    def move_and_rescale(self, newleft, newtop, new_width, new_height):
         self.left = newleft
         self.top = newtop
+        self.width = new_width
+        self.height = new_height
         
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self)
