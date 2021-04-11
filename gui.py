@@ -32,6 +32,13 @@ def draw_buttons(curr_width, curr_height):
     textsurface = play.render('Infinite LoFi Music Generator', True, (0, 0, 0))
     screen.blit(textsurface, (202, 525))
     
+def play_or_quit(position):
+    if (position[0] >= 200 and position[0] <= 300) and (position[1] >= 425 and position[1] <= 475):
+        # call the play music button:
+        print("have to implement")
+    elif (position[0] >= 500 and position[0] <= 600) and (position[1] >= 425 and position[1] <= 475):
+        exit()
+ 
 isRunning = True
 while isRunning:
     for event in pygame.event.get():
@@ -44,6 +51,7 @@ while isRunning:
 
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
+            play_or_quit(pos)
 
 
 
